@@ -1,0 +1,110 @@
+
+Assignment 2: 
+Write a JavaScript Program to get the user registration data and push to array/local storage with AJAX 
+POST method and data list in new page. 
+
+
+First Program:Storing data in Local Storage:
+
+Steps:
+1.Create a folder LocalStorageDemo and create 2 files in it( jsLocalstore.html and jsLocalStorage.js)
+2.Run the jsLocalstore.html in browser and see the output in local storage by right click on browser=>inspect tool 
+   go on system =>performance tab=>localstorage option .you will see the data stored in key value pair.
+
+
+file: jsLocalstore.html
+
+<html>
+    <head>
+        <title> Local Storage Demo</title>
+    </head>
+    <body>
+        <h1> Java Script Local Storage Demo</h1>
+        Enter key:<input type="text" id="take_input_key"><br>
+        Enter value to local storage<input type="text" id="take_input"><br>
+        <button type="button" id="save_value_button">save in local storage </button>
+        <br>
+        <label>Local storage Value:<span id ="localStorageValue"></span></label>
+        <br>
+        <button type="button" id="rdLS_button">Read local storage </button>
+        <br>
+        <button type="button" id="del_data_button">Delete data </button>
+    <script src="jsLocalStorage.js"></script>
+    </body>
+</html>
+
+file: jsLocalStorage.js
+
+console.log("page is ready")
+var take_input_key=document.getElementById("take_input_key")
+var take_input=document.getElementById("take_input")
+var save_value_button=document.getElementById("save_value_button")
+var localStorageValue=document.getElementById("localStorageValue")
+var rdLS_button=document.getElementById("rdLS_button")
+var del_data_button=document.getElementById("del_data_button")
+save_value_button.onclick=function(){
+    localStorage.setItem(take_input_key.value,take_input.value);
+}
+rdLS_button.onclick=function(){
+    localStorageValue.textContent=localStorage.getItem(take_input_key.value);
+}
+del_data_button.onclick=function(){
+    localStorage.removeItem(take_input_key.value);
+}
+
+
+
+Another Program:User Login Data in Local Storage(follow same steps to execute)
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="username" placeholder="username"><br><br>
+     <input type="email" id="email" placeholder="abc@mail.com"> <br><br>
+     <input type="password" id="pwd" placeholder="password"><br><br>
+    <input type="submit" onclick="test()">
+    <script src="localstorage.js" ></script>
+</body>
+</html>
+
+
+localstorage.js
+
+function test(){
+   // retriving data
+    var uid=document.getElementById("username").value;
+    var pw=document.getElementById("pwd").value;
+    var email=document.getElementById("email").value;
+//storing data
+var user=localStorage.setItem("user_id",uid);
+var pass=localStorage.setItem("pwd",pw);
+var em=localStorage.setItem("email_id",email);
+
+//retriving data from localStorage and using it for authorization.
+var user=localStorage.getItem("user_id",uid);
+var pass=localStorage.getItem("pwd",pw);
+var em=localStorage.getItem("email_id",email);
+
+var a,b,c;
+a="jyoti";
+b="jyoti@gmail.com";
+c=123;
+if(a==user && b==em && c==pass)
+{
+    alert("login successful")
+}
+else
+{
+alert("invalid details");
+}
+}
+
+
